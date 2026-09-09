@@ -11,10 +11,10 @@ const config: Config = {
     extend: {
       colors: {
         ink: "#080808",
-        graphite: "#151515",
-        coal: "#101010",
+        graphite: "#141414",
+        coal: "#0D0D0D",
         line: "#2A2A2A",
-        smoke: "#B8B8B8",
+        smoke: "#A3A3A3",
         paper: "#F5F5F5",
         tiger: "#F58220",
         ember: "#D96510",

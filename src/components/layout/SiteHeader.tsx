@@ -7,22 +7,36 @@ import { navLinks, site, whatsappLink } from "@/content/site";
 
 export function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") setIsOpen(false);
     }
 
+    function onScroll() {
+      setIsScrolled(window.scrollY > 18);
+    }
+
+    onScroll();
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-ink/92 backdrop-blur-md">
-      <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-ink/85 backdrop-blur-[14px] transition-all duration-300">
+      <div
+        className={`mx-auto grid w-full max-w-7xl grid-cols-[1fr_auto] items-center gap-3 px-4 transition-[height] duration-300 sm:px-6 lg:grid-cols-[auto_1fr_auto] lg:px-8 ${
+          isScrolled ? "h-14" : "h-[4.5rem]"
+        }`}
+      >
         <a
           href="#inicio"
-          className="focus-ring flex min-w-0 flex-1 items-center gap-3 rounded-md lg:flex-none"
+          className="focus-ring flex min-w-0 items-center gap-3 rounded-md"
           onClick={() => setIsOpen(false)}
         >
           <Image
@@ -30,7 +44,9 @@ export function SiteHeader() {
             width={site.logo.width}
             height={site.logo.height}
             alt={site.logo.alt}
-            className="h-11 w-11 shrink-0 rounded-full bg-white object-contain p-0.5"
+            className={`shrink-0 rounded-full bg-white object-contain p-0.5 transition-[width,height] duration-300 ${
+              isScrolled ? "h-10 w-10" : "h-12 w-12"
+            }`}
             priority
           />
           <span className="min-w-0">
@@ -44,20 +60,21 @@ export function SiteHeader() {
           </span>
         </a>
 
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Navegação principal">
+        <nav className="hidden items-center justify-center gap-1 lg:flex" aria-label="Navegação principal">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="focus-ring rounded-md px-3 py-2 text-sm font-semibold text-smoke transition hover:bg-white/5 hover:text-paper"
+              className="focus-ring group relative rounded-md px-3 py-2 text-sm font-semibold text-smoke transition hover:text-paper"
             >
               {link.label}
+              <span className="absolute inset-x-3 -bottom-0.5 h-0.5 origin-left scale-x-0 bg-tiger transition-transform duration-300 group-hover:scale-x-100" />
             </a>
           ))}
         </nav>
 
         <a href={whatsappLink()} className="focus-ring btn-primary hidden lg:inline-flex">
-          Agendar aula
+          Aula experimental
         </a>
 
         <button
@@ -90,25 +107,25 @@ export function SiteHeader() {
 
       <div
         id="mobile-menu"
-        className={`grid overflow-hidden border-t border-white/10 bg-ink transition-[grid-template-rows] duration-300 ease-out lg:hidden ${
+        className={`mobile-menu-panel grid overflow-hidden border-t border-white/10 transition-[grid-template-rows] duration-300 ease-out lg:hidden ${
           isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
         }`}
       >
         <div className="min-h-0">
-          <nav
-            className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4"
-            aria-label="Navegação mobile"
-          >
+          <nav className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-5" aria-label="Navegação mobile">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="focus-ring min-h-11 rounded-md px-3 py-3 text-base font-semibold text-paper transition hover:bg-white/5 active:scale-[0.99]"
+                className="focus-ring min-h-12 rounded-md border border-white/10 bg-coal px-4 py-3 text-base font-black uppercase text-paper transition hover:border-tiger active:scale-[0.99]"
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}
               </a>
             ))}
+            <a href={whatsappLink()} className="focus-ring btn-primary mt-2 w-full">
+              Aula experimental
+            </a>
           </nav>
         </div>
       </div>

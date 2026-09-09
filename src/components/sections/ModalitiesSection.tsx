@@ -8,8 +8,7 @@ export function ModalitiesSection() {
       <Reveal>
         <SectionHeading label="Modalidades" title="Escolha o ritmo do treino">
           <p>
-            Boxe, kickboxing e jiu-jitsu em uma experiência direta: selecione a modalidade para ver
-            o foco da aula e chamar a equipe com a mensagem certa.
+            Três caminhos de evolução com base técnica, disciplina e acompanhamento profissional.
           </p>
         </SectionHeading>
       </Reveal>
@@ -20,4 +19,3 @@ export function ModalitiesSection() {
     </section>
   );
 }
-

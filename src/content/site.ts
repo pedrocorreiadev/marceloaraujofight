@@ -19,19 +19,12 @@ export const site = {
     title: "MARCELO ARAÚJO FIGHT",
     titleLines: ["MARCELO ARAÚJO", "FIGHT"],
     kicker: "Força, técnica e disciplina para evoluir.",
-    description:
-      "Boxe, kickboxing e jiu-jitsu para todos os níveis em Rio Branco.",
+    description: "Boxe, kickboxing e jiu-jitsu.",
     background: {
       src: "/media/hero/hero-background.webp",
       width: 2092,
       height: 1395,
       alt: "Arte com leão, logo Marcelo Araújo Fight e bandeira do Acre.",
-    },
-    overlay: {
-      src: "",
-      width: 941,
-      height: 1672,
-      alt: "Arte promocional de kickboxing com professora Ellen Araújo e professor Marcelo Araújo.",
     },
   },
   modalities: [
@@ -39,8 +32,8 @@ export const site = {
       name: "Boxe",
       description:
         "Treinos voltados para base, postura, defesa, movimentação e evolução técnica no ritmo de cada aluno.",
-      short: "Base, defesa e movimentação.",
-      cta: "Consultar turmas de Boxe",
+      feature: "Base • Defesa • Movimentação",
+      cta: "Consultar Boxe",
       message:
         "Olá! Conheci a Marcelo Araújo Fight pelo site e gostaria de consultar turmas de Boxe.",
     },
@@ -48,8 +41,8 @@ export const site = {
       name: "Kickboxing",
       description:
         "Aulas com foco em golpes, combinações, condicionamento e disciplina para diferentes níveis de prática.",
-      short: "Combinações, ritmo e disciplina.",
-      cta: "Consultar turmas de Kickboxing",
+      feature: "Combinações • Ritmo • Condicionamento",
+      cta: "Consultar Kickboxing",
       message:
         "Olá! Conheci a Marcelo Araújo Fight pelo site e gostaria de consultar turmas de Kickboxing.",
     },
@@ -57,24 +50,13 @@ export const site = {
       name: "Jiu-jitsu",
       description:
         "Treino técnico para aprender controle, defesa, posições e progressão com orientação próxima.",
-      short: "Controle, defesa e progressão.",
-      cta: "Consultar turmas de Jiu-jitsu",
+      feature: "Controle • Defesa • Progressão",
+      cta: "Consultar Jiu-jitsu",
       message:
         "Olá! Conheci a Marcelo Araújo Fight pelo site e gostaria de consultar turmas de Jiu-jitsu.",
     },
   ],
   trainers: [
-    {
-      name: "Ellen Araújo",
-      title: "Professora",
-      graduation: "Faixa preta graduada",
-      image: {
-        src: "/media/photos/professora-ellen.webp",
-        width: 1254,
-        height: 1254,
-        alt: "Professora Ellen Araújo ajustando a faixa preta durante treino na academia.",
-      },
-    },
     {
       name: "Marcelo Araújo",
       title: "Professor",
@@ -86,51 +68,92 @@ export const site = {
         alt: "Professor Marcelo Araújo em registro real usando uniforme da academia.",
       },
     },
+    {
+      name: "Ellen Araújo",
+      title: "Professora",
+      graduation: "Faixa preta graduada",
+      image: {
+        src: "/media/photos/professora-ellen.webp",
+        width: 1254,
+        height: 1254,
+        alt: "Professora Ellen Araújo ajustando a faixa preta durante treino na academia.",
+      },
+    },
   ],
   kickboxingSchedule: ["09h às 10h", "15h às 16h", "19h30 às 20h30"],
   videos: [
     {
-      title: "Treino guiado",
-      description:
-        "Prática técnica em aula, com orientação próxima e ritmo de treino real.",
+      title: "Boxe e kickboxing",
+      modality: "Boxe • Kickboxing",
+      description: "Prática técnica com ritmo de aula real e acompanhamento próximo.",
       src: "/media/videos/treino-boxe-kickboxing.mp4",
       poster: "/media/videos/treino-boxe-kickboxing.webp",
       width: 1280,
       height: 720,
     },
     {
-      title: "Rotina da academia",
-      description:
-        "Registro vertical de treino coletivo dentro do espaço da Marcelo Araújo Fight.",
+      title: "Treino técnico",
+      modality: "Rotina da academia",
+      description: "Registro vertical da evolução diária dentro da Marcelo Araújo Fight.",
       src: "/media/videos/treino-tecnico.mp4",
       poster: "/media/videos/treino-tecnico.webp",
       width: 716,
       height: 1274,
     },
-  ],
-  teamPhotos: [
     {
-      src: "/media/photos/turma-treino-1.webp",
-      width: 640,
-      height: 480,
-      alt: "Turma reunida após treino na academia Marcelo Araújo Fight.",
-      caption: "Turma após treino",
-    },
-    {
-      src: "/media/photos/turma-treino-2.webp",
-      width: 640,
-      height: 551,
-      alt: "Equipe e alunos reunidos no tatame da Marcelo Araújo Fight.",
-      caption: "Convivência no tatame",
+      title: "Treino em equipe",
+      modality: "Equipe",
+      description: "Energia de turma em um treino real com alunos da academia.",
+      src: "/media/videos/marcelo equipe 2.mp4",
+      poster: "/media/photos/turma-equipe-kickboxing.webp",
+      width: 480,
+      height: 864,
     },
   ],
+  galleryPhotos: [
+    {
+      src: "/media/photos/turma-equipe-kickboxing.webp",
+      width: 1280,
+      height: 960,
+      alt: "Turma da Marcelo Araújo Fight reunida no tatame após treino.",
+      caption: "Equipe no tatame",
+    },
+    {
+      src: "/media/photos/turma-equipe-marcelo-fight.webp",
+      width: 1800,
+      height: 1350,
+      alt: "Alunos da Marcelo Araújo Fight reunidos dentro da academia.",
+      caption: "Disciplina em equipe",
+    },
+  ],
+  community: {
+    title: "MAIS QUE UMA ACADEMIA",
+    text: "Treino também é parceria, respeito e evolução em equipe.",
+    photo: {
+      src: "/media/photos/turma-equipe-marcelo-fight.webp",
+      width: 1800,
+      height: 1350,
+      alt: "Equipe e alunos reunidos na academia Marcelo Araújo Fight.",
+    },
+  },
+  personalFight: {
+    title: "PERSONAL FIGHT",
+    subtitle: "Treino individualizado para quem busca evolução focada.",
+    features: ["Treino individual", "Pequenos grupos", "Acompanhamento próximo"],
+    image: {
+      src: "/media/photos/professor-marcelo.webp",
+      width: 1254,
+      height: 1254,
+      alt: "Professor Marcelo Araújo em registro real da equipe Marcelo Araújo Fight.",
+    },
+  },
 };
 
 export const navLinks = [
   { href: "#inicio", label: "Início" },
   { href: "#modalidades", label: "Modalidades" },
   { href: "#professores", label: "Professores" },
-  { href: "#videos", label: "Vídeos" },
+  { href: "#videos", label: "Treinos" },
   { href: "#horarios", label: "Horários" },
   { href: "#contato", label: "Contato" },
 ];

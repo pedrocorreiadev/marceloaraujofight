@@ -5,7 +5,14 @@
 :root {
   color-scheme: dark;
   --background: #080808;
-  --foreground: #f5f5f5;
+  --surface: #0d0d0d;
+  --surface-strong: #141414;
+  --primary: #f58220;
+  --primary-hover: #d96510;
+  --text: #f5f5f5;
+  --text-muted: #a3a3a3;
+  --border: rgba(255, 255, 255, 0.1);
+  --foreground: var(--text);
 }
 
 * {
@@ -34,13 +41,13 @@ section[id] {
 }
 
 ::selection {
-  background: #f58220;
-  color: #080808;
+  background: var(--primary);
+  color: var(--background);
 }
 
 @layer components {
   .section-wrap {
-    @apply mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8;
+    @apply mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8;
   }
 
   .section-heading {
@@ -52,15 +59,15 @@ section[id] {
   }
 
   .section-title {
-    @apply mt-2 font-display text-3xl font-black uppercase text-paper sm:text-4xl;
+    @apply mt-2 font-display text-3xl font-black uppercase leading-tight text-paper sm:text-4xl;
   }
 
   .btn-primary {
-    @apply inline-flex min-h-11 items-center rounded-md bg-tiger px-5 py-3 text-center text-sm font-black uppercase text-ink transition hover:bg-ember active:scale-95;
+    @apply inline-flex min-h-11 items-center justify-center rounded-md bg-tiger px-5 py-3 text-center text-sm font-black uppercase text-ink shadow-[0_12px_36px_rgba(245,130,32,0.2)] transition duration-300 hover:bg-ember active:scale-95;
   }
 
   .btn-secondary {
-    @apply inline-flex min-h-11 items-center rounded-md border border-white/15 px-5 py-3 text-center text-sm font-black uppercase text-paper transition hover:border-tiger hover:text-tiger active:scale-95;
+    @apply inline-flex min-h-11 items-center justify-center rounded-md border border-white/15 px-5 py-3 text-center text-sm font-black uppercase text-paper transition duration-300 hover:border-tiger hover:bg-white/5 hover:text-tiger active:scale-95;
   }
 
   .focus-ring {
@@ -72,15 +79,32 @@ section[id] {
   }
 
   .trainer-panel {
-    @apply overflow-hidden rounded-lg border border-white/10 bg-coal transition duration-300 hover:border-tiger/50;
+    @apply overflow-hidden rounded-lg border border-white/10 bg-coal transition duration-300 hover:-translate-y-1 hover:border-tiger/60 hover:bg-graphite;
   }
 
   .personal-band {
     background:
-      radial-gradient(circle at 18% 0%, rgba(8, 8, 8, 0.16), transparent 34%),
-      linear-gradient(135deg, #f58220 0%, #d96510 100%);
-    @apply border-y border-tiger/30 text-ink;
+      linear-gradient(90deg, rgba(8, 8, 8, 0.94) 0%, rgba(8, 8, 8, 0.78) 52%, rgba(8, 8, 8, 0.96) 100%),
+      radial-gradient(circle at 78% 30%, rgba(245, 130, 32, 0.18), transparent 32%);
+    @apply border-y border-white/10 bg-ink text-paper;
   }
+}
+
+.hero-brand-overlay {
+  background: linear-gradient(
+    90deg,
+    var(--background) 0%,
+    rgba(8, 8, 8, 0.9) 35%,
+    rgba(8, 8, 8, 0.25) 100%
+  );
+}
+
+.mobile-menu-panel {
+  background: rgba(8, 8, 8, 0.96);
+}
+
+.whatsapp-pulse {
+  animation: whatsapp-pulse 2400ms ease-in-out infinite;
 }
 
 .hero-entrance {
@@ -121,6 +145,17 @@ section[id] {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes whatsapp-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(245, 130, 32, 0.28);
+  }
+
+  55% {
+    box-shadow: 0 0 0 12px rgba(245, 130, 32, 0);
   }
 }
 

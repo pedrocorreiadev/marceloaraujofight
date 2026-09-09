@@ -5,11 +5,11 @@ import { useEffect, useState } from "react";
 
 import { site } from "@/content/site";
 
-type PhotoItem = (typeof site.teamPhotos)[number];
+type PhotoItem = (typeof site.galleryPhotos)[number];
 
 export function PhotoGallery() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const active = activeIndex === null ? null : site.teamPhotos[activeIndex];
+  const active = activeIndex === null ? null : site.galleryPhotos[activeIndex];
 
   useEffect(() => {
     if (activeIndex === null) return;
@@ -30,12 +30,12 @@ export function PhotoGallery() {
 
   return (
     <>
-      <div className="grid gap-4 md:grid-cols-2">
-        {site.teamPhotos.map((photo, index) => (
+      <div className="columns-1 gap-4 md:columns-2 lg:columns-3">
+        {site.galleryPhotos.map((photo, index) => (
           <button
             key={photo.src}
             type="button"
-            className="focus-ring group overflow-hidden rounded-lg border border-white/10 bg-coal text-left transition hover:border-tiger/70 active:scale-[0.99]"
+            className="focus-ring group mb-4 block w-full break-inside-avoid overflow-hidden rounded-lg border border-white/10 bg-coal text-left transition duration-300 hover:-translate-y-1 hover:border-tiger/70 active:scale-[0.99]"
             onClick={() => setActiveIndex(index)}
           >
             <GalleryImage photo={photo} />
@@ -60,7 +60,9 @@ export function PhotoGallery() {
           onTouchEnd={(event) => {
             const start = Number(event.currentTarget.dataset.startX || 0);
             const end = event.changedTouches[0].clientX;
-            if (Math.abs(start - end) > 50) setActiveIndex((index) => nextIndex(index, start > end ? 1 : -1));
+            if (Math.abs(start - end) > 50) {
+              setActiveIndex((index) => nextIndex(index, start > end ? 1 : -1));
+            }
           }}
         >
           <button
@@ -83,7 +85,7 @@ export function PhotoGallery() {
             width={active.width}
             height={active.height}
             alt={active.alt}
-            className="max-h-[80svh] w-auto max-w-full object-contain"
+            className="max-h-[80svh] w-auto max-w-full rounded-lg object-contain"
             sizes="100vw"
           />
           <button
@@ -102,21 +104,22 @@ export function PhotoGallery() {
 
 function GalleryImage({ photo }: { photo: PhotoItem }) {
   return (
-    <div className="relative aspect-[4/3] bg-black">
+    <div className="relative bg-black" style={{ aspectRatio: `${photo.width} / ${photo.height}` }}>
       <Image
         src={photo.src}
         width={photo.width}
         height={photo.height}
         alt={photo.alt}
-        className="h-full w-full object-contain"
-        sizes="(min-width: 768px) 50vw, 100vw"
+        className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+        sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+        loading="lazy"
       />
+      <span className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-ink/80 to-transparent" />
     </div>
   );
 }
 
 function nextIndex(index: number | null, step: number) {
   const current = index ?? 0;
-  return (current + step + site.teamPhotos.length) % site.teamPhotos.length;
+  return (current + step + site.galleryPhotos.length) % site.galleryPhotos.length;
 }
-
