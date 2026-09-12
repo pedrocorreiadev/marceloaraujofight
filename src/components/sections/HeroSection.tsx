@@ -11,7 +11,7 @@ export function HeroSection() {
         width={site.hero.background.width}
         height={site.hero.background.height}
         alt={site.hero.background.alt}
-        className="absolute inset-0 -z-20 h-full w-full object-cover object-[58%_50%]"
+        className="absolute inset-0 -z-20 h-full w-full object-cover object-center sm:object-[58%_50%]"
         priority
         sizes="100vw"
       />
