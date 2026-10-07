@@ -8,14 +8,30 @@ import { navLinks, site, whatsappLink } from "@/content/site";
 export function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
 
   useEffect(() => {
+    let previousScrollY = window.scrollY;
+
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") setIsOpen(false);
     }
 
     function onScroll() {
-      setIsScrolled(window.scrollY > 18);
+      const maxScrollY = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+      const scrollY = Math.min(maxScrollY, Math.max(0, window.scrollY));
+      const scrollDelta = scrollY - previousScrollY;
+
+      setIsScrolled(scrollY > 18);
+
+      if (scrollY <= 18 || scrollDelta < 0) {
+        setIsHidden(false);
+      } else if (scrollDelta > 0) {
+        setIsHidden(true);
+        setIsOpen(false);
+      }
+
+      previousScrollY = scrollY;
     }
 
     onScroll();
@@ -28,7 +44,13 @@ export function SiteHeader() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-ink/85 backdrop-blur-[14px] transition-all duration-300">
+    <header
+      className={`sticky top-0 z-50 border-b border-white/10 bg-ink/85 backdrop-blur-[14px] transition-transform duration-300 ${
+        isHidden ? "-translate-y-full" : "translate-y-0"
+      }`}
+      aria-hidden={isHidden}
+      inert={isHidden}
+    >
       <div
         className={`mx-auto grid w-full max-w-7xl grid-cols-[1fr_auto] items-center gap-3 px-4 transition-[height] duration-300 sm:px-6 lg:grid-cols-[auto_1fr_auto] lg:px-8 ${
           isScrolled ? "h-14" : "h-[4.5rem]"
